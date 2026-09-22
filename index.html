@@ -10,7 +10,20 @@
 </head>
 <body>
   <div class="page">
-    <header class="hero">
+    <div class="topbar">
+      <div class="topbar__inner">
+        <div class="topbar__meta">
+          <span class="topbar__item"><span class="topbar__label">Location</span> TBD</span>
+          <span class="topbar__sep" aria-hidden="true">·</span>
+          <span class="topbar__item"><span class="topbar__label">Dates</span> 17 November 2026</span>
+          <span class="topbar__sep" aria-hidden="true">·</span>
+          <span class="topbar__perks">Free to attend · Free food &amp; merch</span>
+        </div>
+        <a class="topbar__register" href="#register">Register now</a>
+      </div>
+    </div>
+
+    <header class="hero" id="hero">
       <div class="hero__aurora" aria-hidden="true">
         <div class="aurora__glow"></div>
         <div class="aurora__ribbon aurora__ribbon--1"></div>
@@ -18,13 +31,10 @@
         <div class="aurora__ribbon aurora__ribbon--3"></div>
         <div class="aurora__ribbon aurora__ribbon--4"></div>
       </div>
+      <div class="aurora__sparkles" id="aurora-sparkles" aria-hidden="true"></div>
       <div class="aurora__horizon"></div>
 
       <div class="hero__frame">
-        <div class="hero__top">
-          <span class="hero__brand"><span class="hero__diamond" aria-hidden="true">◆</span> AURORA HACK</span>
-        </div>
-
         <p class="hero__tagline">WOMEN & NON-BINARY — AI HACKATHON — LONDON — NOV &lt;2026&gt;</p>
       </div>
     </header>
@@ -32,7 +42,7 @@
     <section class="title-block">
       <div class="title-block__frame">
         <h1 class="title-block__title">
-          <span class="title-block__aurora">AURORA</span>
+          <span class="title-block__aurora" id="aurora-title">AURORA</span>
           <span class="title-block__hack">HACK</span>
         </h1>
       </div>
@@ -113,18 +123,16 @@
           <p class="judging__panel"><strong>Non-monetary prizes:</strong> Additional criteria available.</p>
         </section>
 
-
-
         <section class="info-grid" aria-label="Event details">
           <div class="info-grid__item">
             <span class="info-grid__label">01 / WHEN</span>
-            <p class="info-grid__main">November 2026</p>
-            <p class="info-grid__sub">&lt;dates TBC&gt;</p>
+            <p class="info-grid__main">17 November 2026</p>
+            <p class="info-grid__sub">Dates confirmed</p>
           </div>
           <div class="info-grid__item">
             <span class="info-grid__label">02 / WHERE</span>
-            <p class="info-grid__main">Halkin - Monument</p>
-            <p class="info-grid__sub">10 Lower Thames Street</p>
+            <p class="info-grid__main">Location TBD</p>
+            <p class="info-grid__sub">London</p>
           </div>
           <div class="info-grid__item">
             <span class="info-grid__label">03 / FOR</span>
@@ -133,9 +141,9 @@
           </div>
         </section>
 
-        <div class="cta" role="presentation">
+        <div class="cta" id="register">
           <span class="cta__left">APPLICATIONS OPEN NOW</span>
-          <span class="cta__right">aurorahack.io <span class="cta__arrow" aria-hidden="true">➔</span></span>
+          <a class="cta__right" href="#register">Register now <span class="cta__arrow" aria-hidden="true">➔</span></a>
         </div>
 
         <footer class="footer">
@@ -153,5 +161,7 @@
       </div>
     </main>
   </div>
+
+  <script src="js/aurora.js"></script>
 </body>
 </html>
