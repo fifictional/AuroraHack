@@ -179,8 +179,10 @@ body {
   background: radial-gradient(120% 80% at 50% -10%, #0a1226 0%, #060912 55%, #04060d 100%);
   --mx: 50%;
   --my: 45%;
-  --mactive: 0;
+  --pan-x: 0px;
+  --pan-y: 0px;
   cursor: crosshair;
+  touch-action: none;
 }
 
 .hero__aurora {
@@ -190,6 +192,8 @@ body {
   width: 120%;
   height: 720px;
   pointer-events: none;
+  transform: translate3d(var(--pan-x), var(--pan-y), 0);
+  will-change: transform;
 }
 
 /* soft base wash behind the streaks */
@@ -203,7 +207,7 @@ body {
   filter: blur(30px);
 }
 
-/* ribbons: diagonal gradient, cut into vertical rays by mask, heavily blurred */
+/* ribbons: diagonal gradient, cut into vertical rays by mask */
 .aurora__ribbon {
   position: absolute;
   mix-blend-mode: screen;
@@ -378,21 +382,26 @@ body {
 }
 
 /* drift animations — different durations for organic feel */
+@keyframes auroraGlowDrift {
+  0%   { transform: translate3d(-3%, 1%, 0) scale(1.02); }
+  100% { transform: translate3d(4%, -2%, 0) scale(1.06); }
+}
+
 @keyframes auroraDrift1 {
-  0%   { transform: translateX(-4%) skewX(-8deg) scaleY(1); }
-  100% { transform: translateX(5%)  skewX(-4deg) scaleY(1.08); }
+  0%   { transform: translate3d(-10%, 0, 0) skewX(-10deg) scaleY(1); }
+  100% { transform: translate3d(12%, 0, 0) skewX(-3deg) scaleY(1.14); }
 }
 @keyframes auroraDrift2 {
-  0%   { transform: translateX(4%)  skewX(6deg)  scaleY(1.05); }
-  100% { transform: translateX(-5%) skewX(10deg) scaleY(0.95); }
+  0%   { transform: translate3d(8%, 0, 0) skewX(8deg) scaleY(1.08); }
+  100% { transform: translate3d(-12%, 0, 0) skewX(12deg) scaleY(0.92); }
 }
 @keyframes auroraDrift3 {
-  0%   { transform: translateX(-2%) skewX(3deg);  opacity: 0.5; }
-  100% { transform: translateX(3%)  skewX(-2deg); opacity: 0.8; }
+  0%   { transform: translate3d(-6%, 0, 0) skewX(4deg); opacity: 0.45; }
+  100% { transform: translate3d(8%, 0, 0) skewX(-4deg); opacity: 0.9; }
 }
 @keyframes auroraDrift4 {
-  0%   { transform: translateX(-3%) skewX(-5deg) scaleY(0.98); opacity: 0.4; }
-  100% { transform: translateX(4%)  skewX(2deg)  scaleY(1.06); opacity: 0.7; }
+  0%   { transform: translate3d(-8%, 0, 0) skewX(-7deg) scaleY(0.96); opacity: 0.4; }
+  100% { transform: translate3d(10%, 0, 0) skewX(4deg) scaleY(1.1); opacity: 0.8; }
 }
 
 .hero__frame {
@@ -1013,12 +1022,17 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .aurora__ribbon {
+  .aurora__ribbon,
+  .aurora__glow {
     animation: none;
   }
 
   .aurora__sparkles {
     display: none;
+  }
+
+  .hero__aurora {
+    transform: none;
   }
 }
 
@@ -1126,16 +1140,11 @@ body {
 
   .aurora__ribbon {
     filter: blur(28px);
-    animation-duration: 32s;
   }
 
   .aurora__ribbon--3,
   .aurora__ribbon--4 {
     opacity: 0.7;
-  }
-
-  .aurora__sparkles {
-    display: none;
   }
 
   .hero__frame {
@@ -1270,10 +1279,6 @@ body {
 }
 
 @media (hover: none) and (pointer: coarse) {
-  .aurora__sparkles {
-    display: none;
-  }
-
   .hero {
     cursor: default;
   }
